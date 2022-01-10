@@ -3,8 +3,6 @@ from django.http import HttpResponse
 from django.http import HttpRequest
 import json
 import random
-# from django.views.decorators import csrf
-# from rest_framework.decorators import api_view
 
 # 한식 리스트
 korean_rice = ['김밥','비빔밥','볶음밥','덮밥','죽']
@@ -31,7 +29,7 @@ japanese_hot_pot = ['오뎅나베','샤브샤브','스키야키','부타나베']
 japanese_foods = japanese_rice + japanese_noodle + japanese_grill + japanese_fry + japanese_hot_pot
 
 # 양식 리스트
-western_pasta = ['토마토 파스타','크림 파스타','로제 파스타','알리오 에 올리오','봉골레 파스타']
+western_pasta = ['토마토 파스타','크림 파스타','로제 파스타','알리오 올리오','봉골레 파스타']
 western_pizza = ['하와이안 피자','쉬림프 피자','고구마 피자','포테이토 피자','시카고 피자']
 western_hamburger = ['맥도날드','버거킹','롯데리아','맘스터치','쉑쉑버거']
 western_chicken = ['후라이드 치킨','양념 치킨','간장 치킨','파닭','닭강정']
@@ -78,14 +76,14 @@ food_URL_dict = {
     # 한식 이미지
     "김밥" : "https://d1blyo8czty997.cloudfront.net/tour-course/12433/600x600/2922004803.jpg",
     "비빔밥" : "https://i.pinimg.com/originals/1e/a6/3f/1ea63f2165c67d13452ff8a131787cc7.jpg",
-    "볶음밥" : "https://mblogthumb-phinf.pstatic.net/MjAyMDA1MjlfMTA4/MDAxNTkwNzAyMzA4OTQ3.9hcGQv_iZlbCfNXM1PFYdizB_SXKgeyZz8ST16i5F-Ag.YPTqtZCVfmiEiTEuNN6GUOuFsfRLuE2drqMa6_krf_Ig.JPEG.blogdanielland/A32.jpg?type=w800",
+    "볶음밥" : "https://cdn.clipkit.co/tenants/542/articles/images/000/003/506/medium/c93dffd1-2005-4cad-85d8-c4cace91c32c.jpg?1611371653",
     "덮밥" : "https://t1.daumcdn.net/cfile/tistory/9958383B5C939D8D22",
-    "죽" : "https://lh3.googleusercontent.com/proxy/JwwNU3X1FL1DRoU95mOKe1iQZSu7Eo72u21N0eQWlIZqHg1TCYI-qTkH3wC8EE5eSxYy5XQyy_aScST4IwgNCU1AIMdhsbFcONsnBE_kW0D2m5Ar_DjXTKKTC9cg76s3CWjOReBV_gD-xr9GldU",
+    "죽" : "https://lh3.googleusercontent.com/proxy/KgGbQaZD4n3oZBhwwCJvgiCZ_3xe0oEdkAB4CzJEUWNSvmPA_E1Tskm3jOpjJxbTAPYrAeizK92zWy_0qrwhMYD6wSYVfoO2uHhji73c4JAr7pQViNOL7aYHVK8DXxeWfVPMEK30u4KWqgzd-ws",
 
     '비빔국수' : "https://lh3.googleusercontent.com/proxy/xA7dXxRTswWZBoNs7rv5U0G26T0Rv_H7EW2hL07KZlnKigMzMhYTDKdxI9FSzXaM8o-z_MvI6OMePaGENXi2w8mOk2GAOH4H_ehDMPHq7bkB58ogQkigUjU19aEagRNeRAU1ZSRBAXQJe5qXx3AP4JyrtEc_Bblvb28C4oHl",
     '잔치국수' : "https://img.mimint.co.kr/food/bbs/2019/3/18/20190318164604_ketozyvi.jpg",
     '칼국수' : "https://i.pinimg.com/originals/81/f8/7c/81f87c024512f7acbc932333bcc3e02b.jpg",
-    '물냉면' : "https://shopping-phinf.pstatic.net/main_8290432/82904329411.jpg",
+    '물냉면' : "https://mblogthumb-phinf.pstatic.net/MjAxODA0MDRfMjk0/MDAxNTIyODA1MzU4MDM4.Tw_yiKrN0F1hGxHFG5kNu-6K7svBRNf-CICquG55jEcg.L4fp0K8G0MMOOzR2kz5CzhenkDgcHryMToqcY0Oohmwg.JPEG.114mis/1.jpg?type=w800",
     '비빔냉면' : "https://upload3.inven.co.kr/upload/2021/10/07/bbs/i16137460551.jpg",
 
     '국밥' : "https://image.fmkorea.com/files/attach/new2/20210301/1135415169/2841875140/3423424636/8d9267368f3829a401e5ffa28e7229db.jpg",
@@ -161,7 +159,7 @@ food_URL_dict = {
     '토마토 파스타' : "https://sjnfzdfjrjgl1655541.cdn.ntruss.com/goods/7/2021/06/828_tmp_a243214ae2736918e91d0a6047178fb35360view.jpg",
     '크림 파스타' : "https://post-phinf.pstatic.net/MjAyMDEyMTRfMjQ2/MDAxNjA3OTMyMDExNzQx.GyHdnqKUOBeqSN5gYorGtf3bwfbeAX41ByPQ5n2BOgkg.MItqemxae4or50BtO-6cwYj8-ae7PzMkj6A5yszuvY8g.JPEG/4.jpg?type=w1200",
     '로제 파스타' : "https://sjnfzdfjrjgl1655541.cdn.ntruss.com/goods/2/2021/06/821_tmp_559f54016fcb596e0f449438b8bfe6d79520view.jpg",
-    '알리오 에 올리오' : "https://i3.ruliweb.com/img/20/12/24/17694c5e1fc18beeb.jpg",
+    '알리오 올리오' : "https://i3.ruliweb.com/img/20/12/24/17694c5e1fc18beeb.jpg",
     '봉골레 파스타' : "http://storage.enuri.info/pic_upload/knowbox2/202107/11051795320210715bc57163d-bec6-4af0-aabd-8f4fa0d0908b.jpg",
 
     '하와이안 피자' : "https://joinsmedia.sfo2.digitaloceanspaces.com/news/1200-1934279980_tJUSodex_63e2898b98f6d8914be50797f5c94014f44f8e1c.jpg",
@@ -186,18 +184,28 @@ food_URL_dict = {
 # @api_view(['GET', 'POST'])
 def index(request):
     request_json = json.loads(request.body)
-    print(request_json)
 
     # 해당 파라미터에 맞는 리스트에서 랜덤으로 하나 추출
     selected_food = random.choice(foods_dict[request_json['action']['params']['food_kinds']])
-    print(selected_food)
 
     # 해당 음식에 맞는 이미지 URL 매핑
     if selected_food in food_URL_dict:
         food_URL = food_URL_dict[selected_food]
     else:
         food_URL = "https://lh3.googleusercontent.com/proxy/tKM9_Ws8Ib7MxNlcote2f0EyrK4xpbmBBzRHwaQ4IBZlysVglksraB1iMyGOCZ1rOwm3r5k7VFZ6hlNBDvZ2SXVlUXOed_Ixy2KAn7i9JzC1jDUcI1i2uyIrlZPSWzXBd8u0mzzN4O1u34t2bTRA7DvZzytlDMtOLDPqyA3tjkQ0_J2F"
-   
+    
+    # 해당 음식에 맞는 카카오맵 및 웹검색 URL 생성
+    map_base_URL = "https://map.kakao.com/?from=total&nil_suggest=btn&tab=place&q="
+    search_base_URL = "https://search.daum.net/search?w=tot&DA=YZR&t__nil_searchbox=btn&sug=&sugo=&sq=&o=&q="
+
+    part_URL = selected_food.replace(' ','%20') + "%20맛집"
+    map_URL = map_base_URL + part_URL
+    
+    search_URL = search_base_URL + part_URL
+    print(map_URL)
+    print(search_URL)
+
+    # 응답 메시지 구성
     response_string = {
         "version": "2.0",
         "template": {
@@ -205,7 +213,7 @@ def index(request):
             {
                 "basicCard": {
                 "title": selected_food,
-                "description": "라고 챗봇이 말했습니다.",
+                "description": "",
                 "thumbnail": {
                     "imageUrl": food_URL
                 },
@@ -214,6 +222,16 @@ def index(request):
                 "social": {
                 },
                 "buttons": [
+                {
+                    "action":  "webLink",
+                    "label": "카카오맵",
+                    "webLinkUrl": map_URL
+                },
+                {
+                    "action":  "webLink",
+                    "label": "웹 검색",
+                    "webLinkUrl": search_URL
+                },
                 ]
                 }
             }
@@ -221,4 +239,9 @@ def index(request):
         }
     }
     response_json = json.dumps(response_string)
+
+    # 로그 메시지 생성
+    print(request_json['action']['params'])
+    print(selected_food)
+
     return HttpResponse(response_json)
