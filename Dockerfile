@@ -1,4 +1,4 @@
-FROM idock.daumkakao.io/chappie/python:3.10.4
+FROM python:3.8.13
 
 ARG WORKERS=1
 ARG THREADS=1
@@ -17,7 +17,7 @@ ENV WORKERS_NUM ${WORKERS}
 ENV THREADS_NUM ${THREADS}
 #ENV PYTHONPATH=$PYTHONPATH:.
 
-EXPOSE 8080
+EXPOSE 8000
 
 RUN chmod +x docker-entry.sh
 ENTRYPOINT ["./docker-entry.sh"]
