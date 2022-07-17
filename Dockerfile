@@ -3,7 +3,7 @@ FROM python:3.8.13
 ARG WORKERS=1
 ARG THREADS=1
 
-ENV APP_HOME=/app
+ENV APP_HOME=/application
 WORKDIR $APP_HOME
 RUN mkdir -p $APP_HOME
 
