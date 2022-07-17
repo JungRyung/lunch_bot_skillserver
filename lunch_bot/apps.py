@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class HellossConfig(AppConfig):
+class LunchBotConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'helloSS'
+    name = 'lunch_bot'

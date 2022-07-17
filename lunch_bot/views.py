@@ -222,3 +222,9 @@ def index(request):
     }
     response_json = json.dumps(response_string)
     return HttpResponse(response_json)
+
+
+def health_check(request):
+    response_string = "ok"
+    response_json = json.dumps(response_string)
+    return HttpResponse(response_json)
