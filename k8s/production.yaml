@@ -62,9 +62,8 @@ kind: Ingress
 metadata:
   name: lunch-bot-ingress
   annotations:
-    kubernetes.io/ingress.class: "nginx-internal"
+    kubernetes.io/ingress.class: "internal"
     nginx.ingress.kubernetes.io/rewrite-target: /
-    friday.kakao.com/enable: "true"
 spec:
   rules:
     - host: lunch-bot.devel.kakao.com
