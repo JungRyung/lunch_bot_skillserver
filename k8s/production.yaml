@@ -35,13 +35,13 @@ spec:
           livenessProbe:
             httpGet:
               port: 8000
-              path: /lunch_bot/health_check
+              path: /healthcheck
             initialDelaySeconds: 60
             timeoutSeconds: 3 # default 1
           readinessProbe:
             httpGet:
               port: 8000
-              path: /lunch_bot/health_check
+              path: /healthcheck
             initialDelaySeconds: 60
             timeoutSeconds: 3 # default 1
 ---
